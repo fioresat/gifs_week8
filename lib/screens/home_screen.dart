@@ -43,7 +43,8 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget get _content => SingleChildScrollView(
+  Widget get _content =>
+      SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -51,7 +52,8 @@ class _HomeScreenState extends State<HomeScreen> {
               height: 10,
             ),
             SearchForm(onSearch: _changePhrase),
-            if (_phrase != "") gifTable(),
+            if (_phrase != "" && _pictures.isNotEmpty) gifTable(),
+            if (_phrase != "" && _pictures.isEmpty) mess(),
           ],
         ),
       );
@@ -92,6 +94,26 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           )
       ],
+    );
+  }
+
+  Widget mess() {
+    return Container(
+      height: 40,
+      width: 300,
+      padding: EdgeInsets.only(top:10),
+      decoration: const BoxDecoration(
+        color: Colors.pinkAccent,
+      ),
+      child: const Text(
+        'Try another request',
+        textAlign: TextAlign.center,
+        style: TextStyle(
+            fontSize: 20.0,
+            fontWeight: FontWeight.bold,
+            color: Colors.white),
+      ),
+
     );
   }
 }
